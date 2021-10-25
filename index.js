@@ -1,77 +1,57 @@
-var inquirer = require('inquirer');
-const fs = require('fs');
+module.exports = {
 
-
-  function starter() {
-    inquirer
-  .prompt([
+    selectionPrompt : [
     {
         type: "list",
-        message: "View all departments:",
+        message: "Please choose:",
         name: 'departments',
         choices: [
+            'View Employees',
+            'View Employees by Department',
+            'View Employees by Manager',
+            'View Departments',
+            'View Roles',
+            'View Departments',
+            'Add Employee',
+            'Add Department',
+            'Add Role',
+            'Update Employee Role',
+            'Update Emplyee Manager',
+            'Remove Employee',
+            'Close'
 
         ]
-    }, 
+    }
+],
+    addDepartment : [ 
     {
-      type: "list",
-      message: "View all roles:",
-      name: 'roles',
-      choices: [
-
-      ]
-    },
-    {
-      type: "list",
-      message: "View all employees",
-      name: 'employees',
-      choices:[
-
-      ]
-
-    },
-    {
-      type: "list",
-      message: "Add a department:",
+      type: "input",
+      message: "Add a Department:",
       name: 'add-dep',
-      choices: [
+    }],
 
-      ]
-
-    },
+    addRole : [
     {
-      type: "list",
-      message: "Add a role:",
+      type: "input",
+      message: "Add a role title:",
       name: 'add-role',
-      choices: [
-          
-      ]
-    },
-    {
-        type: "list",
-        message: "Add an employee:",
-        name: 'add-emp',
-        choices: [
+    }],
 
-        ]
+    addEmployee : [
+    {
+        type: "input",
+        message: "Add an employee first name:",
+        name: 'add-emp',
     },
     {
         type: "input",
-        message: "Update an employee role:",
-        name: 'role-update',
+        message: "Add an employee  name:",
+        name: 'add-emp',
     },
-    {
-        type: "input",
-        message: "What is your license (if any)?",
-        name: 'license',
-    },
-    {
-        type: "input",
-        message: "Credits:",
-        name: 'credits',
-      }
+
+
   ]
-  )
+  
   .then((answers) => {
     console.log(answers);
     
