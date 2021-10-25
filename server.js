@@ -4,6 +4,7 @@ const inquirer = require('inquirer');
 const path = require('path');
 const prompts = require('./index');
 const db = require('./db')
+const cTable = require('console.table');
 
 const mysql = require("mysql2");
 const { addDepartment, addRole } = require("./index");
@@ -60,7 +61,7 @@ function makeSelection() {
                 close();
             }
         }
-}
+        )}
 
 // Query database
 function viewEmployees() {

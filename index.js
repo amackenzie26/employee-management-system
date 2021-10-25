@@ -11,7 +11,7 @@ module.exports = {
             'View Employees by Manager',
             'View Departments',
             'View Roles',
-            'View Departments',
+            'View Department',
             'Add Employee',
             'Add Department',
             'Add Role',
