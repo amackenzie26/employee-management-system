@@ -18,7 +18,7 @@ app.use(express.json());
 function makeSelection() {
     inquirer
         .prompt(question)
-        .then(response) => {
+        .then((response) => {
             let selection = response.selection;
             if (selection === 'View Employees') {
                 viewEmployees();
@@ -63,26 +63,117 @@ function makeSelection() {
 }
 
 // Query database
-function viewDepartments() {
+function viewEmployees() {
     db.promise().query(`SELECT * FROM department_db;`)
-        .then(results) => {
+        .then((results) => {
             console.table(results[0]);
         })
         .catch(console.error)
         .then(() => {
-            chooseAction();
+            makeSelection();
         })
     };
-  
-  db.query('SELECT * roles_db', function (err, results) {
-    console.log(results);
-    console.log("*********");
-  });
-  
-  db.query('SELECT * employee_db', function (err, results) {
-    console.log(results);
-    console.log("*********");
-  });
+function viewEmpByManager() {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    };
+function viewDepartments() {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    };
+function viewRoles() {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    };
+function viewDepartment() {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    };
+function addEmployee() {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    };
+function addDepartment() {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    };
+function addRole() {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    };
+function updateEmpManager() {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    };
+function removeEmployee() {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    };
+function close() {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    };
+ 
 
 // Default response for any other request (Not Found)
 app.use((req, res) => {
