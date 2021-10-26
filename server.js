@@ -100,7 +100,7 @@ function viewDepartments() {
         })
 };
 function viewRoles() {
-    db.promise().query(`SELECT * FROM role_db;`)
+    db.promise().query(`SELECT * FROM roles_db;`)
         .then((results) => {
             console.table(results[0]);
         })
@@ -204,6 +204,11 @@ function addRole() {
         })
 };
 function updateEmpManager() {
+    inquirer.prompt([{
+        type: 'input',
+        message: 'What what manager would you like to change this employee to?',
+        name: 'newRoleIdNumber'
+    },
     db.promise().query(`SELECT * FROM department_db;`)
         .then((results) => {
             console.table(results[0]);
