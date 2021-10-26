@@ -137,32 +137,34 @@ function addEmployee() {
     },
     {
         type: 'input',
-        message: 'What is the new employees manager ID number?',
-        name: 'newEmployeeManagerIdNumber'
+        message: 'What is the new employees role?',
+        name: 'newEmployeeRole'
+    },
+    {
+        type: 'input',
+        message: 'What is the new employees manager?',
+        name: 'newEmployeeManager'
     },
     ])
-    .then()
-db.promise().query(`SELECT * FROM employee_db;`)
-    .then((results) => {
-        console.table(results[0]);
-    })
-    .catch(console.error)
     .then(() => {
-        makeSelection();
+    db.promise().query(`SELECT * FROM employee_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
     })
 };
 function addDepartment() {
     inquirer.prompt([{
         type: 'input',
-        message: 'What is the new department id number?',
-        name: 'newDepartmentIdNumber'
-    },
-    {
-        type: 'input',
         message: 'What is the new department name?',
         name: 'newDepartmentName'
     },
 ])
+    .then(() => {
     db.promise().query(`SELECT * FROM department_db;`)
         .then((results) => {
             console.table(results[0]);
@@ -171,14 +173,10 @@ function addDepartment() {
         .then(() => {
             makeSelection();
         })
+    })
 };
 function addRole() {
     inquirer.prompt([{
-        type: 'input',
-        message: 'What is the new role id nunber?',
-        name: 'newRoleIdNumber'
-    },
-    {
         type: 'input',
         message: 'What is the new role title?',
         name: 'newRoleTitle'
@@ -188,12 +186,13 @@ function addRole() {
         message: 'What is the new role salary?',
         name: 'newRoleSalary'
     },
-    {
+    {    
         type: 'input',
-        message: 'What is the new role salary?',
-        name: 'newRoleSalary'
+        message: 'What is the new role department?',
+        name: 'newRoleIdNumber'
     },
 ])
+    .then(() => {
     db.promise().query(`SELECT * FROM roles_db;`)
         .then((results) => {
             console.table(results[0]);
@@ -202,6 +201,30 @@ function addRole() {
         .then(() => {
             makeSelection();
         })
+    })
+};
+function updateEmpRole() {
+    inquirer.prompt([{
+        type: 'input',
+        message: 'What is the updated role ID?',
+        name: 'empRoleUpdate'
+    },
+    {
+        type: 'input',
+        message: 'What is the updated role name?',
+        name: 'empRoleUpdate'
+    },
+])
+    .then(() => {
+    db.promise().query(`SELECT * FROM department_db;`)
+        .then((results) => {
+            console.table(results[0]);
+        })
+        .catch(console.error)
+        .then(() => {
+            makeSelection();
+        })
+    })
 };
 function updateEmpManager() {
     inquirer.prompt([{
@@ -209,6 +232,7 @@ function updateEmpManager() {
         message: 'What what manager would you like to change this employee to?',
         name: 'newRoleIdNumber'
     },
+])
     db.promise().query(`SELECT * FROM department_db;`)
         .then((results) => {
             console.table(results[0]);
