@@ -49,7 +49,7 @@ function makeSelection() {
             else if (selection === 'Add Department') {
                 addDepartment();
             }
-            else if (seleciton === 'Add Role') {
+            else if (selection === 'Add Role') {
                 addRole();
             }
             else if (selection === 'Update Employee Role') {
@@ -196,7 +196,7 @@ function addRole() {
     },
     {    
         type: 'input',
-        message: 'What is the new role department?',
+        message: 'What is the new role department ID number?',
         name: 'newRoleIdNumber'
     },
 ])
@@ -205,7 +205,7 @@ function addRole() {
         let newTitle = response.newRoleTitle
         let newSalary = response.newRoleSalary
         let newIdNum = response.newRoleIdNumber
-    db.promise().query(`INSERT INTO roles_db (department_name) VALUES (?, ?, ?)`, [newTitle, newSalary, newIdNum])
+    db.promise().query(`INSERT INTO roles_db (title, salary, department_id) VALUES (?, ?, ?)`, [newTitle, newSalary, newIdNum])
         .then((results) => {
             console.table(results[0]);
         })
