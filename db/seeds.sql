@@ -1,10 +1,10 @@
 
 
 INSERT INTO department_db (id, department_name)
-VALUES (1, 'John'),
-       (2, 'Kelly'),
-       (3, 'Bill'),
-       (4, 'Britni');
+VALUES (1, 'Office'),
+       (2, 'Software Development'),
+       (3, 'Manufacturing'),
+       (4, 'Warehouse');
 
 INSERT INTO roles_db (id, title, salary, department_id)
 VALUES (1, 'Manager', 150000, 2),
@@ -13,5 +13,5 @@ VALUES (1, 'Manager', 150000, 2),
        (4, 'Intern', 20000, 2);
 
 INSERT INTO employee_db (id, first_name, last_name, roles_db, manager_id)
-VALUES (1, '')
-       (1, '')
+VALUES (1, 'Michael', 'Scott')
+       (1, 'Dwight', 'Shrewt')
