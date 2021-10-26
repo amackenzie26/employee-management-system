@@ -4,18 +4,21 @@ const prompts = require('./index');
 
 const cTable = require('console.table');
 const mysql = require("mysql2");
+const { selectionPrompt } = require('./index');
+const { prompt } = require('inquirer');
+const { type } = require('os');
 
 const db = mysql.createConnection(
     {
-      host: 'localhost',
-      // MySQL username,
-      user: 'root',
-      // MySQL password
-      password: 'password',
-      database: 'company_db'
+        host: 'localhost',
+        // MySQL username,
+        user: 'root',
+        // MySQL password
+        password: 'password',
+        database: 'company_db'
     },
     console.log(`Connected to the company_db database.`)
-  );
+);
 
 function makeSelection() {
     inquirer
@@ -62,11 +65,12 @@ function makeSelection() {
                 close();
             }
         }
-    )}
+        )
+}
 
-// Query database
+//Query database
 function viewEmployees() {
-    db.promise().query(`SELECT * FROM department_db;`)
+    db.promise().query(`SELECT * FROM employee_db;`)
         .then((results) => {
             console.table(results[0]);
         })
@@ -74,9 +78,9 @@ function viewEmployees() {
         .then(() => {
             makeSelection();
         })
-    };
+};
 function viewEmpByManager() {
-    db.promise().query(`SELECT * FROM department_db;`)
+    db.promise().query(`SELECT * FROM manager_id;`)
         .then((results) => {
             console.table(results[0]);
         })
@@ -84,7 +88,7 @@ function viewEmpByManager() {
         .then(() => {
             makeSelection();
         })
-    };
+};
 function viewDepartments() {
     db.promise().query(`SELECT * FROM department_db;`)
         .then((results) => {
@@ -94,9 +98,9 @@ function viewDepartments() {
         .then(() => {
             makeSelection();
         })
-    };
+};
 function viewRoles() {
-    db.promise().query(`SELECT * FROM department_db;`)
+    db.promise().query(`SELECT * FROM role_db;`)
         .then((results) => {
             console.table(results[0]);
         })
@@ -104,9 +108,9 @@ function viewRoles() {
         .then(() => {
             makeSelection();
         })
-    };
+};
 function viewDepartment() {
-    db.promise().query(`SELECT * FROM department_db;`)
+    db.promise().query(`SELECT * FROM department_id;`)
         .then((results) => {
             console.table(results[0]);
         })
@@ -114,18 +118,51 @@ function viewDepartment() {
         .then(() => {
             makeSelection();
         })
-    };
+};
 function addEmployee() {
-    db.promise().query(`SELECT * FROM department_db;`)
-        .then((results) => {
-            console.table(results[0]);
-        })
-        .catch(console.error)
-        .then(() => {
-            makeSelection();
-        })
-    };
+    inquirer.prompt([{
+        type: 'input',
+        message: 'What is the new employee ID number?',
+        name: 'newEmployeeIdNumber'
+    },
+    {
+        type: 'input',
+        message: 'What is the new employees first name?',
+        name: 'newEmployeeFirstName'
+    },
+    {
+        type: 'input',
+        message: 'What is the new employees last name?',
+        name: 'newEmployeeLastName'
+    },
+    {
+        type: 'input',
+        message: 'What is the new employees manager ID number?',
+        name: 'newEmployeeManagerIdNumber'
+    },
+    ])
+    .then()
+db.promise().query(`SELECT * FROM employee_db;`)
+    .then((results) => {
+        console.table(results[0]);
+    })
+    .catch(console.error)
+    .then(() => {
+        makeSelection();
+    })
+};
 function addDepartment() {
+    inquirer.prompt([{
+        type: 'input',
+        message: 'What is the new department id number?',
+        name: 'newDepartmentIdNumber'
+    },
+    {
+        type: 'input',
+        message: 'What is the new department name?',
+        name: 'newDepartmentName'
+    },
+])
     db.promise().query(`SELECT * FROM department_db;`)
         .then((results) => {
             console.table(results[0]);
@@ -134,9 +171,30 @@ function addDepartment() {
         .then(() => {
             makeSelection();
         })
-    };
+};
 function addRole() {
-    db.promise().query(`SELECT * FROM department_db;`)
+    inquirer.prompt([{
+        type: 'input',
+        message: 'What is the new role id nunber?',
+        name: 'newRoleIdNumber'
+    },
+    {
+        type: 'input',
+        message: 'What is the new role title?',
+        name: 'newRoleTitle'
+    },
+    {
+        type: 'input',
+        message: 'What is the new role salary?',
+        name: 'newRoleSalary'
+    },
+    {
+        type: 'input',
+        message: 'What is the new role salary?',
+        name: 'newRoleSalary'
+    },
+])
+    db.promise().query(`SELECT * FROM roles_db;`)
         .then((results) => {
             console.table(results[0]);
         })
@@ -144,7 +202,7 @@ function addRole() {
         .then(() => {
             makeSelection();
         })
-    };
+};
 function updateEmpManager() {
     db.promise().query(`SELECT * FROM department_db;`)
         .then((results) => {
@@ -154,7 +212,7 @@ function updateEmpManager() {
         .then(() => {
             makeSelection();
         })
-    };
+};
 function removeEmployee() {
     db.promise().query(`SELECT * FROM department_db;`)
         .then((results) => {
@@ -164,7 +222,7 @@ function removeEmployee() {
         .then(() => {
             makeSelection();
         })
-    };
+};
 function close() {
     db.promise().query(`SELECT * FROM department_db;`)
         .then((results) => {
@@ -174,6 +232,7 @@ function close() {
         .then(() => {
             makeSelection();
         })
-    };
- 
+};
+
 makeSelection();
+

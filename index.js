@@ -4,7 +4,7 @@ module.exports = {
     {
         type: "list",
         message: "Please choose:",
-        name: 'departments',
+        name: 'selection',
         choices: [
             'View Employees',
             'View Employees by Department',
