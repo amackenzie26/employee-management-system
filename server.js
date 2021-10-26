@@ -219,7 +219,7 @@ function updateEmpRole() {
     inquirer.prompt([{
         type: 'input',
         message: 'What is the updated role ID?',
-        name: 'empRoleUpdate'
+        name: 'empRoleUpdateId'
     },
     {
         type: 'input',
@@ -228,8 +228,10 @@ function updateEmpRole() {
     },
 ])
     .then((response) => {
+        let empRoleID = response.empRoleUpdateId
+        let empRoleUp = response.empRoleUpdate
         console.log(response)
-    db.promise().query(`SELECT * FROM department_db;`)
+    db.promise().query(`INSERT INTO roles_db (role_id, title) VALUES (?, ?)`, [empRoleID, empRoleUp])
         .then((results) => {
             console.table(results[0]);
         })
