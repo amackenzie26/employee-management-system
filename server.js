@@ -7,7 +7,7 @@ const db = require('./db')
 const cTable = require('console.table');
 
 const mysql = require("mysql2");
-const { addDepartment, addRole } = require("./index");
+// const { addDepartment, addRole } = require("./index");
 var app = express();
 var PORT = 3008;
 
@@ -61,7 +61,7 @@ function makeSelection() {
                 close();
             }
         }
-        )}
+    )}
 
 // Query database
 function viewEmployees() {
@@ -185,17 +185,17 @@ app.listen(PORT, () => {
     console.log(`It is running on ${PORT}`)
 });
 
-const db = mysql.createConnection(
-    {
-      host: 'localhost',
-      // MySQL username,
-      user: 'root',
-      // MySQL password
-      password: 'password',
-      database: 'company_db'
-    },
-    console.log(`Connected to the company_db database.`)
-  );
+// const db = mysql.createConnection(
+//     {
+//       host: 'localhost',
+//       // MySQL username,
+//       user: 'root',
+//       // MySQL password
+//       password: 'password',
+//       database: 'company_db'
+//     },
+//     console.log(`Connected to the company_db database.`)
+//   );
 
 
 //   //Routes
