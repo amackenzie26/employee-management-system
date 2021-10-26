@@ -52,10 +52,8 @@ module.exports = {
 
   ]
   
-  .then((answers) => {
-    console.log(answers);
+  // .then((answers) => {
+  //   console.log(answers);
     
 }
-)
-}
-starter();
+

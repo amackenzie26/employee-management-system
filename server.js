@@ -1,20 +1,11 @@
-const express = require("express");
 
 const inquirer = require('inquirer');
-const path = require('path');
 const prompts = require('./index');
-const db = require('./db')
+// const db = require('./db')
 const cTable = require('console.table');
 
 const mysql = require("mysql2");
 // const { addDepartment, addRole } = require("./index");
-var app = express();
-var PORT = 3008;
-
-
-app.use(express.static("public"));
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
 
 function makeSelection() {
     inquirer
@@ -176,14 +167,14 @@ function close() {
     };
  
 
-// Default response for any other request (Not Found)
-app.use((req, res) => {
-    res.status(404).end();
-  });
+// // Default response for any other request (Not Found)
+// app.use((req, res) => {
+//     res.status(404).end();
+//   });
 
-app.listen(PORT, () => {
-    console.log(`It is running on ${PORT}`)
-});
+// app.listen(PORT, () => {
+//     console.log(`It is running on ${PORT}`)
+// });
 
 // const db = mysql.createConnection(
 //     {
