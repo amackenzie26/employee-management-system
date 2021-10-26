@@ -1,15 +1,25 @@
 
 const inquirer = require('inquirer');
 const prompts = require('./index');
-// const db = require('./db')
-const cTable = require('console.table');
 
+const cTable = require('console.table');
 const mysql = require("mysql2");
-// const { addDepartment, addRole } = require("./index");
+
+const db = mysql.createConnection(
+    {
+      host: 'localhost',
+      // MySQL username,
+      user: 'root',
+      // MySQL password
+      password: 'password',
+      database: 'company_db'
+    },
+    console.log(`Connected to the company_db database.`)
+  );
 
 function makeSelection() {
     inquirer
-        .prompt(question)
+        .prompt(prompts.selectionPrompt)
         .then((response) => {
             let selection = response.selection;
             if (selection === 'View Employees') {
@@ -166,40 +176,4 @@ function close() {
         })
     };
  
-
-// // Default response for any other request (Not Found)
-// app.use((req, res) => {
-//     res.status(404).end();
-//   });
-
-// app.listen(PORT, () => {
-//     console.log(`It is running on ${PORT}`)
-// });
-
-// const db = mysql.createConnection(
-//     {
-//       host: 'localhost',
-//       // MySQL username,
-//       user: 'root',
-//       // MySQL password
-//       password: 'password',
-//       database: 'company_db'
-//     },
-//     console.log(`Connected to the company_db database.`)
-//   );
-
-
-//   //Routes
-//   app.get('/api/company', (req, res) => {
-      
-//       res.send('great success');
-//   });
-// //Root route
-//   app.get('/', (req, res) => {
-//       res.send('welcome!')
-//   });
-// //Queries go inside above routes
-
-// app.post('/api/company', (req, res) => {
-//     console.log('this was posted')
-// });
+makeSelection();
