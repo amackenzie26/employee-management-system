@@ -9,7 +9,7 @@
   4. Run a node server.js
   5. View stored data and update data via the prompt choices
   # [Usage](#usage)
-  See Installation above.
+  This application can be used to create and store employee data for a business. 
   # [Built With](#built)
   Node.js, Inquirer, MySQL
   # [Author](#author)
