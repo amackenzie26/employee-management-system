@@ -137,17 +137,23 @@ function addEmployee() {
     },
     {
         type: 'input',
-        message: 'What is the new employees role?',
+        message: 'What is the new employees role ID number?',
         name: 'newEmployeeRole'
     },
     {
         type: 'input',
-        message: 'What is the new employees manager?',
+        message: 'What is the new employees manager ID?',
         name: 'newEmployeeManager'
     },
     ])
-    .then(() => {
-    db.promise().query(`SELECT * FROM employee_db;`)
+    .then((response) => {
+        console.log(response)
+        let newEmpId = response.newEmployeeIdNumber
+        let newFn = response.newEmployeeFirstName
+        let newLn = response.newEmployeeLastName
+        let newEmpRole = response.newEmployeeRole
+        let newEmpMan = response.newEmployeemanager
+    db.promise().query(`INSERT INTO employee_db (id, first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?, ?)`, [newEmpId, newFn, newLn, newEmpRole, newEmpMan])
         .then((results) => {
             console.table(results[0]);
         })
@@ -164,8 +170,10 @@ function addDepartment() {
         name: 'newDepartmentName'
     },
 ])
-    .then(() => {
-    db.promise().query(`SELECT * FROM department_db;`)
+    .then((response) => {
+        console.log(response)
+        let res = response.newDepartmentName
+    db.promise().query(`INSERT INTO department_db (department_name) VALUES (?)`, [res])
         .then((results) => {
             console.table(results[0]);
         })
@@ -192,8 +200,12 @@ function addRole() {
         name: 'newRoleIdNumber'
     },
 ])
-    .then(() => {
-    db.promise().query(`SELECT * FROM roles_db;`)
+    .then((response) => {
+        console.log(response)
+        let newTitle = response.newRoleTitle
+        let newSalary = response.newRoleSalary
+        let newIdNum = response.newRoleIdNumber
+    db.promise().query(`INSERT INTO roles_db (department_name) VALUES (?, ?, ?)`, [newTitle, newSalary, newIdNum])
         .then((results) => {
             console.table(results[0]);
         })
@@ -215,7 +227,8 @@ function updateEmpRole() {
         name: 'empRoleUpdate'
     },
 ])
-    .then(() => {
+    .then((response) => {
+        console.log(response)
     db.promise().query(`SELECT * FROM department_db;`)
         .then((results) => {
             console.table(results[0]);
@@ -233,6 +246,8 @@ function updateEmpManager() {
         name: 'newRoleIdNumber'
     },
 ])
+    .then((response) => {
+        console.log(response)
     db.promise().query(`SELECT * FROM department_db;`)
         .then((results) => {
             console.table(results[0]);
@@ -241,6 +256,7 @@ function updateEmpManager() {
         .then(() => {
             makeSelection();
         })
+    })
 };
 function removeEmployee() {
     db.promise().query(`SELECT * FROM department_db;`)
